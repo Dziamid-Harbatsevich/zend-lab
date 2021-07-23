@@ -1,1 +1,18 @@
-<h1>Show Post</h1>
+<?php
+	$title = $post->getTitle();
+	$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title);?></h1>
+
+<ul class="list-group">
+	<li class="list-group-item align-items-center">
+		<span>Category: </span><?php echo $post->getCategory();?>
+	</li>
+	<li class="list-group-item align-items-center">
+		<span>Description: </span><?php echo $post->getDescription();?>
+	</li>
+</ul>
+
+<div class="container row mt-4">
+	<a href="<?php echo $this->url('post');?>" class="btn btn-info">&laquo BACK</a>
+</div>

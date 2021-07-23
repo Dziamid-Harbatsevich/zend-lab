@@ -27,6 +27,26 @@ class PostTable
 			'description' => $post->getDescription(),
 			'category' => $post->getCategory(),
 		];
-		return $this->tableGateway->insert($data);
+		if ($post->getId()) {
+			$this->tableGateway->update($data, [
+				'id' => $post->getId(),
+			]);
+		} else {
+			$this->tableGateway->insert($data);
+		}
+	}
+
+	public function getPost($id)
+	{
+		return $this->tableGateway->select([
+																				'id' => $id
+																			])->current();
+	}
+
+	public function deletePost($id)
+	{
+		$this->tableGateway->delete([
+			'id' => $id
+		]);
 	}
 }

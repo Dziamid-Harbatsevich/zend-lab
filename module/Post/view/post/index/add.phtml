@@ -7,6 +7,8 @@ $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 
+<div class="form-group form-inline">
+
 <?php
 $form->setAttribute('action', $this->url('post', ['action' => 'add']));
 $form->prepare();
@@ -32,3 +34,5 @@ echo $this->formRow($form->get('category'));
 <?php
 echo $this->formSubmit($form->get('submit'));
 ?>
+
+</div>
