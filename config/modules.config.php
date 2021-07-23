@@ -27,7 +27,5 @@ return [
     'Laminas\Diactoros',
     'Calendar',
     'Clients',
-    'Post',
-    'ZendSkeletonModule',
     'Application',
 ];

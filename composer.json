@@ -33,9 +33,7 @@
         "psr-4": {
             "Application\\": "module/Application/src/",
             "Calendar\\": "module/Calendar/src/",
-            "Clients\\": "module/Clients/src/",
-            "Post\\": "module/Post/src/",
-            "ZendSkeletonModule\\": "module/ZendSkeletonModule/src/"
+            "Clients\\": "module/Clients/src/"
         }
     },
     "autoload-dev": {
