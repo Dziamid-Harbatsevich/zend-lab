@@ -33,7 +33,8 @@
         "psr-4": {
             "Application\\": "module/Application/src/",
             "Calendar\\": "module/Calendar/src/",
-            "Clients\\": "module/Clients/src/"
+            "Clients\\": "module/Clients/src/",
+            "Post\\": "module/Post/src/"
         }
     },
     "autoload-dev": {

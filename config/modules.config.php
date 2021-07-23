@@ -27,5 +27,6 @@ return [
     'Laminas\Diactoros',
     'Calendar',
     'Clients',
+    'Post',
     'Application',
 ];
