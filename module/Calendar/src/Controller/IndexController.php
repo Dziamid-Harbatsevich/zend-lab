@@ -59,6 +59,7 @@ class IndexController extends AbstractActionController
 
     public function deleteAction()
     {
-        return new ViewModel();
+        dd($this->getRequest());
+        // return new ViewModel();
     }
 }
