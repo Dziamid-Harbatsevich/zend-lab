@@ -45,7 +45,7 @@ class PostTable
 
 	public function deletePost($id)
 	{
-		$this->tableGateway->delete([
+		return $this->tableGateway->delete([
 			'id' => $id
 		]);
 	}

@@ -1,1 +1,22 @@
-<h1>Delete Event</h1>
+<?php
+	$title = 'Delete Event';
+	$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title);?></h1>
+
+<?php
+	$url = $this->url('calendar', [
+		'action' => 'delete',
+		'id' => $id
+	]);
+?>
+
+<form action="<?php echo $url;?>" method="post" class="border text-center w-50">
+	<p class="font-italic">Confirm deletion.</p>
+	<div class="form-group">
+		<input type="hidden" name="id" value="<?php echo $event->getId();?>">
+		<input type="submit" name="delete" value="Yes" class="btn btn-danger">
+		<input type="submit" name="delete" value="No" class="btn btn-default">
+	</div>
+
+</form>

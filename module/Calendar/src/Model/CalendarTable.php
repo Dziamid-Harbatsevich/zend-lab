@@ -33,13 +33,27 @@ class CalendarTable
 
 	}
 
-	public function saveData($post)
+	public function saveData($event)
 	{
 		$data = [
-			'title' => $post->getTitle(),
-			'description' => $post->getDescription(),
-			'date' => $post->getDate(),
+			'title' => $event->getTitle(),
+			'description' => $event->getDescription(),
+			'date' => $event->getDate(),
 		];
 		return $this->tableGateway->insert($data);
+	}
+
+	public function getEvent($id)
+	{
+		return $this->tableGateway->select([
+			'id' => $id
+		])->current();
+	}
+
+	public function deleteEvent($id)
+	{
+		return $this->tableGateway->delete([
+			'id' => $id
+		]);
 	}
 }
