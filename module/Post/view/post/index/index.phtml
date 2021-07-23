@@ -2,13 +2,15 @@
 /**
  * @var Laminas\View\Renderer\PhpRenderer $this
  */
+$title = 'Блог';
+$this->headTitle($title);
 ?>
 <div class="jumbotron">
-    <h1 class="display-4">Blog Page</h1>
+    <h1 class="display-4"><?php echo $this->escapeHtml($title); ?></h1>
 </div>
 
 <div class="row mb-4">
-	<a href="<?php echo $this->url('post', ['action' => 'add']);?>" class="btn btn-success">New Post</a>
+	<a href="<?php echo $this->url('post', ['action' => 'add']);?>" class="btn btn-success">Новая публикация</a>
 </div>
 
 <div class="card-deck">
@@ -16,10 +18,10 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">ID</th>
-	      <th scope="col">Title</th>
-	      <th scope="col">Description</th>
-	      <th scope="col">Category</th>
-	      <th scope="col">Action</th>
+	      <th scope="col">Заглавие</th>
+	      <th scope="col">Содержание</th>
+	      <th scope="col">Категория</th>
+	      <th scope="col">Меню</th>
 	    </tr>
 	  </thead>
 	  <tbody>
