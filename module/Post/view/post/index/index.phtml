@@ -34,9 +34,9 @@ $this->headTitle($title);
 	      <td><?= $post->getDescription()?></td>
 	      <td class="text-center"><?= $post->getCategory()?></td>
 	      <td class="text-center">
-	      	<a href="<?php echo $this->url('post', ['action' => 'show', 'id' => $post->getId()]);?>" class="badge bg-success text-light">View</a>
-	      	<a href="<?php echo $this->url('post', ['action' => 'edit', 'id' => $post->getId()]);?>" class="badge bg-primary text-light">Edit</a>
-	      	<a href="<?php echo $this->url('post', ['action' => 'delete', 'id' => $post->getId()]);?>" class="badge bg-danger text-light">Delete</a>
+	      	<a href="<?php echo $this->url('post', ['action' => 'show', 'id' => $post->getId()]);?>" class="badge bg-success text-light">Читать</a>
+	      	<a href="<?php echo $this->url('post', ['action' => 'edit', 'id' => $post->getId()]);?>" class="badge bg-primary text-light">Правка</a>
+	      	<a href="<?php echo $this->url('post', ['action' => 'delete', 'id' => $post->getId()]);?>" class="badge bg-danger text-light">Удалить</a>
 	      </td>
 	    </tr>
 	  	<?php endforeach;?>
