@@ -14,7 +14,7 @@ return [
             'calendar' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/calendar[/:action[/:timestamp]]',
+                    'route'    => '/calendar[/:action[/:id]]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',

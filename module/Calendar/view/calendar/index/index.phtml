@@ -61,8 +61,8 @@ $calendar_date = Carbon::now()->subDay(-$i)->toDateString();
       <p class="px-1"><?=$desription?></p>
       <?php if ($show_control):?>
       <p class="px-1">
-        <button class="badge bg-info" data-toggle="modal" data-target="#eventModal" data-whatever="@mdo" onclick="setModalData('<?=$id?>', '<?=$form_data_title?>')">Новый участник</button>
-        <a href="/calendar/delete/<?=$id?>" class="badge bg-danger">Delete</a>
+        <button class="badge bg-info" data-toggle="modal" data-target="#eventModal" data-whatever="@mdo" onclick="setModalData('<?php echo $id;?>', '<?php echo $form_data_title;?>')">Новый участник</button>
+        <a href="<?php echo $this->url('calendar', ['action' => 'delete', 'id' => $id]);?>" class="badge bg-danger">Delete</a>
       </p>
       <?php endif; ?>
 
