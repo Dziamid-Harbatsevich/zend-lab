@@ -41,22 +41,22 @@ if (count($events)) {
 <?php
 $calendar_date = Carbon::now()->subDay(-$i)->toDateString();
 ?>
-    <p class="px-4 font-weight-bold text-danger"><?=$calendar_date?></p>
-<?php
-  if ($id = array_search($calendar_date, $event_dates)) {
-    $title = '<span class="text-success">'.date('H:i', strtotime($data[$id]['date'])).'</span> - '.$data[$id]['title'];
-    $desription = $data[$id]['desription'];
-    $show_control = true;
-    $form_data_title = $data[$id]['title'];
-    unset($event_dates[$id]);
-    unset($data[$id]);
-  } else {
-    $title = '';
-    $desription = '';
-    $show_control = false;
-  }
-?>
-
+      <p class="px-4 font-weight-bold text-danger"><?=$calendar_date?></p>
+      <?php
+        label_event_same_day:
+        if ($id = array_search($calendar_date, $event_dates)) {
+          $title = '<span class="text-success">'.date('H:i', strtotime($data[$id]['date'])).'</span> - '.$data[$id]['title'];
+          $desription = $data[$id]['desription'];
+          $show_control = true;
+          $form_data_title = $data[$id]['title'];
+          unset($event_dates[$id]);
+          unset($data[$id]);
+        } else {
+          $title = '';
+          $desription = '';
+          $show_control = false;
+        }
+      ?>
       <p class="px-1 font-weight-bold"><?=$title?></p>
       <p class="px-1"><?=$desription?></p>
       <?php if ($show_control):?>
@@ -65,7 +65,12 @@ $calendar_date = Carbon::now()->subDay(-$i)->toDateString();
         <a href="<?php echo $this->url('calendar', ['action' => 'delete', 'id' => $id]);?>" class="badge bg-danger">Delete</a>
       </p>
       <?php endif; ?>
-
+    <?php
+      if (in_array($calendar_date, $event_dates)) {
+        echo "<hr>";
+        goto label_event_same_day;
+      }
+    ?>
     </div>
   <?php endfor;?>
   </div>
