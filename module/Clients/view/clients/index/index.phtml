@@ -1,0 +1,39 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+?>
+<div class="jumbotron d-flex align-items-center">
+    <h1 class="display-4">Клиенты</h1>
+</div>
+
+
+<div class="container">
+	<table class="table table-hover">
+	  <thead>
+	    <tr>
+	      <th scope="col">ID</th>
+	      <th scope="col">Имя</th>
+	      <th scope="col">Эл. почта</th>
+	      <th scope="col">ID События</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+
+	  <?php if (count($clients)):?>
+	  	<?php foreach ($clients as $client):?>
+	    <tr>
+	      <th scope="row"><?= $client->getId()?></th>
+	      <td><?= $client->getName()?></td>
+	      <td><?= $client->getEmail()?></td>
+	      <td class="text-center"><?= $client->getEventId()?></td>
+	    </tr>
+	  	<?php endforeach;?>
+	  <?php else:?>
+	  	<tr>
+	  		<td class="text-warning">Данных не найдено.</td>
+	  	</tr>
+	  <?php endif;?>
+	  </tbody>
+	</table>
+</div>

@@ -1,0 +1,38 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+$title = 'Добавить новое событие';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<div class="form-group form-inline">
+
+<?php
+$form->setAttribute('action', $this->url('calendar', ['action' => 'add']));
+$form->prepare();
+?>
+
+<?php
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+?>
+</br>
+<?php
+echo $this->formRow($form->get('title'));
+?>
+</br>
+<?php
+echo $this->formRow($form->get('description'));
+?>
+</br>
+<?php
+echo $this->formRow($form->get('date'));
+?>
+</br>
+<?php
+echo $this->formSubmit($form->get('submit'));
+?>
+
+</div>

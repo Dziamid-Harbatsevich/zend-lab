@@ -1,0 +1,107 @@
+<?php
+/**
+ * @var Laminas\View\Renderer\PhpRenderer $this
+ */
+use Carbon\Carbon;
+$period = 7;        // days
+
+$data = [];
+$event_dates = [];
+if (count($events)) {
+  foreach ($events as $event) {
+    $data += [$event->getId() => ['id' => $event->getId(),
+                                  'title' => $event->getTitle(),
+                                  'desription' => $event->getDescription(),
+                                  'date' => $event->getDate(),
+                                  // 'name' => $event->getName() ? $event->getName() : null,
+                                  // 'email' => $event->getEmail() ? $event->getEmail() : null,
+                                  ]
+              ];
+  }
+  foreach ($data as $id => $event) {
+      $event_dates += [ $id => date('Y-m-d', strtotime($event['date'])) ];
+  }
+}
+?>
+<div class="jumbotron d-flex align-items-center">
+    <h1 class="display-4">Календарь</h1>
+    <p class="ml-5 mt-4"><?php printf("Текущее время - %s", Carbon::now()->toDateTimeString());?></p>
+</div>
+
+<div class="row mb-4 justify-content-center">
+  <a href="<?php echo $this->url('calendar', ['action' => 'add']);?>" class="btn btn-success">Новое событие</a>
+</div>
+
+<div class="container">
+  <div class="row d-flex justify-content-center">
+  <?php for ($i=0; $i < $period; $i++):?>
+
+    <div class="card border-dark">
+
+<?php
+$calendar_date = Carbon::now()->subDay(-$i)->toDateString();
+?>
+    <p class="px-4 font-weight-bold text-danger"><?=$calendar_date?></p>
+<?php
+  if ($id = array_search($calendar_date, $event_dates)) {
+    $title = '<span class="text-success">'.date('H:i', strtotime($data[$id]['date'])).'</span> - '.$data[$id]['title'];
+    $desription = $data[$id]['desription'];
+    $show_control = true;
+    $form_data_title = $data[$id]['title'];
+    unset($event_dates[$id]);
+    unset($data[$id]);
+  } else {
+    $title = '';
+    $desription = '';
+    $show_control = false;
+  }
+?>
+
+      <p class="px-1 font-weight-bold"><?=$title?></p>
+      <p class="px-1"><?=$desription?></p>
+      <?php if ($show_control):?>
+      <p class="px-1">
+        <button class="badge bg-info" data-toggle="modal" data-target="#eventModal" data-whatever="@mdo" onclick="setModalData('<?=$id?>', '<?=$form_data_title?>')">Новый участник</button>
+      </p>
+      <?php endif; ?>
+
+    </div>
+  <?php endfor;?>
+  </div>
+</div>
+
+
+<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eventModalLabel">Событие: <span id="title"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body signup">
+        <form id="form-client" class="">
+          <p id="error-txt" class="error-txt text-error"></p>
+          <input type="hidden" id="event_id" name="event_id">
+          <div class="form-group">
+            <label for="name" class="col-form-label">ФИО:</label>
+            <input type="text" class="form-control" id="name" name="name">
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="text" class="form-control" id="email" name="email">
+          </div>
+          <div id="modal-footer" class="modal-footer button">
+            <button type="button" class="btn btn-primary" form="form-client" id="submit-form-client">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/js/setModalData.js"></script>
+<script type="text/javascript" src="/js/eventRegClient.js"></script>
